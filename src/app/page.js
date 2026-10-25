@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import SkillCard from "@/components/SkillCard";
-import Kartu from "@/components/Kartu"
+import Kartu from "@/components/Kartu";
+import Footer from "@/components/Footer";
 
 const skills = [
   { nama: "HTML", level: "Menengah" },
@@ -12,6 +13,7 @@ const skills = [
 
 export default function Home() {
   return (
+    <>
     <main className="mx-auto max-w-5xl px-4 py-10 space-y-6">
       <Hero
        nama="Mulki Mualana Tegar"
@@ -47,9 +49,7 @@ export default function Home() {
         </Kartu>
      </div>
 
-
-
-      <section className="mt-10">
+     <section className="mt-10">
         <h2 className="mb-4 text-2xl font-bold text-utama">Keahlian</h2>
          <div className="grid gap-4 md:grid-cols-3">
           {skills.map((skill) => (
@@ -58,6 +58,48 @@ export default function Home() {
           ))}
          </div>
       </section>
+
+    <div className="mt-10">
+     <Kartu judul="Jawal Belajar">
+      <div className="ovroverflow-x-auto">
+        <table className="w-full border-collapse text-left text-sm">
+          <thead>
+            <tr className="bg-blue-900 text-white">
+              <td className="px-3 py-2">Hari</td>
+              <td className="px-3 py-2">Waktu</td>
+              <td className="px-3 py-2">Kegiatan</td>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr className="broder-b border-gray-200">
+              <td className="px-3 py-2">Senin</td>
+              <td className="px-3 py-2">19.00 - 20.00</td>
+              <td className="px-3 py-2">Membaca ulang modul</td>
+            </tr>
+
+            <tr className="broder-b border-gray-200">
+              <td className="px-3 py-2">Rabu</td>
+              <td className="px-3 py-2">19.00 - 21.00</td>
+              <td className="px-3 py-2">Mengerjakan tugas praktik </td>
+            </tr>
+
+            <tr className="broder-b border-gray-200">
+              <td className="px-3 py-2">Jum'at</td>
+              <td className="px-3 py-2">19.30 - 20.30</td>
+              <td className="px-3 py-2">Membuat video dan menulis laporan</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+     </Kartu>
+
+     </div>
+
     </main>
+
+    <Footer />
+    </>
   );
 }
