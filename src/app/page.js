@@ -1,7 +1,9 @@
+
+import Link from "next/link";
 import Hero from "@/components/Hero";
+import ProyekCard from "@/components/ProyekCard";
 import SkillCard from "@/components/SkillCard";
-import Kartu from "@/components/Kartu";
-import Footer from "@/components/Footer";
+import { proyek } from "@/data/proyek";
 
 const skills = [
   { nama: "HTML", level: "Menengah" },
@@ -11,95 +13,50 @@ const skills = [
   { nama: "JavaScript", level: "Dasar" },
 ];
 
+const proyekTerbaru = proyek.slice(-3);
+
 export default function Home() {
   return (
-    <>
     <main className="mx-auto max-w-5xl px-4 py-10 space-y-6">
       <Hero
-       nama="Mulki Mualana Tegar"
-       tagline="Seorang pelajar yang tertarik dalam dunia teknologi, khususnya Web Development, Front-End Development, dan Database."
+        nama="Mulki Mualana Tegar"
+        tagline="Seorang pelajar yang tertarik dalam dunia teknologi, khususnya Web Development, Front-End Development, dan Database."
       />
 
-        <Kartu judul="Tentang Saya">
-          <p className="lending-7 text-gray-700">
-            Saya adalah seseorang yang masih terus mencari dan membentuk diri saya sendiri. Saya suka mencoba hal-hal baru, memiliki rasa penasaran yang cukup besar, dan tidak mudah puas hanya dengan mengetahui sesuatu di permukaannya.
-            Saya mungkin masih banyak kekurangan, tetapi saya selalu berusaha untuk belajar dari setiap pengalaman dan kesalahan.
-            Bagi saya, proses untuk menjadi lebih baik jauh lebih penting daripada terlihat sudah sempurna.
-            motto hidup saya adalah Jangan mencari ketengan di tempat nabi adam di hukum
-          </p>
-        </Kartu>
+      <section className="mt-10">
+        <h2 className="mb-4 text-2xl font-bold text-utama">
+          Keahlian
+        </h2>
 
-     <div className="grid grid-cols-1 items-stretch gap-6 md:grid-cols-2">
-        <Kartu judul="Hobi">
-        <ul className="list-inside list-disc space-y-2 text-gray-700">
-          <li>Belajar pemrograman</li>  
-          <li>Membuat dan mengembangkan website</li>  
-          <li>Mempelajari database</li>  
-          <li>Mendesain poster mengembangkan Canva</li>  
-        </ul>  
-        </Kartu>  
-
-        <Kartu judul="Cita-cita">
-          <p  className="lending-7 text-gray-700">
-            Saya, Bercita-cita ketika saya sudah lulus dari SMKN 1 Pasuruan, 
-            saya ingin masuk lpk untuk belajar bahasa Jepang, setelah lancar,
-            saya ingin pergi ke negara Jepang dan bekerja di Negar sana dan menabung gaji saya,
-            ketika uang nya suda terkumpul saya ingin membuat peternakan sapi dan menjadi blantek sapi 
-          </p>
-        </Kartu>
-     </div>
-
-     <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-bold text-utama">Keahlian</h2>
-         <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-3">
           {skills.map((skill) => (
-          <SkillCard key={skill.nama} nama={skill.nama}
-          level={skill.level} />
+            <SkillCard
+              key={skill.nama}
+              nama={skill.nama}
+              level={skill.level}
+            />
           ))}
-         </div>
+        </div>
       </section>
 
-    <div className="mt-10">
-     <Kartu judul="Jawal Belajar">
-      <div className="ovroverflow-x-auto">
-        <table className="w-full border-collapse text-left text-sm">
-          <thead>
-            <tr className="bg-blue-900 text-white">
-              <td className="px-3 py-2">Hari</td>
-              <td className="px-3 py-2">Waktu</td>
-              <td className="px-3 py-2">Kegiatan</td>
-            </tr>
-          </thead>
+      <section className="mt-10">
+        <h2 className="mb-4 text-2xl font-bold text-utama">
+          Proyek Terbaru
+        </h2>
 
-          <tbody>
-            <tr className="broder-b border-gray-200">
-              <td className="px-3 py-2">Senin</td>
-              <td className="px-3 py-2">19.00 - 20.00</td>
-              <td className="px-3 py-2">Membaca ulang modul</td>
-            </tr>
+        <div className="grid gap-6 md:grid-cols-3">
+          {proyekTerbaru.map((item) => (
+            <ProyekCard key={item.slug} proyek={item} />
+          ))}
+        </div>
 
-            <tr className="broder-b border-gray-200">
-              <td className="px-3 py-2">Rabu</td>
-              <td className="px-3 py-2">19.00 - 21.00</td>
-              <td className="px-3 py-2">Mengerjakan tugas praktik </td>
-            </tr>
-
-            <tr className="broder-b border-gray-200">
-              <td className="px-3 py-2">Jum'at</td>
-              <td className="px-3 py-2">19.30 - 20.30</td>
-              <td className="px-3 py-2">Membuat video dan menulis laporan</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-     </Kartu>
-
-     </div>
-
+        <Link
+          href="/proyek"
+          className="mt-6 inline-block rounded-lg bg-utama px-5 py-2 font-semibold text-white"
+        >
+          Lihat semua proyek
+        </Link>
+      </section>
     </main>
-
-    <Footer />
-    </>
   );
 }
