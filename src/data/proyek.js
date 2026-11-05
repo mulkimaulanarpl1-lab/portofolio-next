@@ -42,7 +42,7 @@ export const proyek = [
     judul: "Pendeteksi Banjir",
     kategori: "IoT",
     minggu: "Minggu 3",
-    gambar: "/proyek/iot.png",
+    gambar: "/proyek/IoT.png",
     deskripsi:
       "Pendeteksi Banjir merupakan proyek berbasis Internet of Things (IoT) yang dirancang untuk memantau perubahan ketinggian air. Proyek ini menerapkan konsep penggunaan sensor dan perangkat elektronik untuk mengenali kondisi air berdasarkan batas yang telah ditentukan. Tujuannya adalah membantu memberikan informasi lebih awal ketika kondisi air berpotensi menimbulkan banjir.",
     fitur: [
@@ -59,7 +59,7 @@ export const proyek = [
     judul: "Manajemen Siswa",
     kategori: "Website",
     minggu: "Minggu 4",
-    gambar: "/proyek/siswa.png",
+    gambar: "/proyek/SISWA.png",
     deskripsi:
       "Manajemen Siswa merupakan proyek website yang dirancang untuk membantu pengelolaan informasi siswa secara terstruktur. Proyek ini berfokus pada penyajian data agar lebih mudah dibaca, dicari, dan dikelola. Melalui proyek ini, saya mempelajari penerapan konsep pengembangan website dalam membangun sistem informasi yang dapat mendukung pengelolaan data siswa.",
     fitur: [
