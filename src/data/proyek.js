@@ -3,7 +3,7 @@ export const proyek = [
   {
     slug: "revora",
     judul: "REVORA",
-    kategori: "Website",
+    kategori: "Mobile APP",
     minggu: "Minggu 1",
     gambar: "/proyek/REVORA.png",
     deskripsi:

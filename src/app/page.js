@@ -24,7 +24,7 @@ export default function Home() {
       />
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-bold text-utama">
+        <h2 className="mb-4 text-2xl font-bold text-utama dark:text-sky-200">
           Keahlian
         </h2>
 
@@ -40,7 +40,7 @@ export default function Home() {
       </section>
 
       <section className="mt-10">
-        <h2 className="mb-4 text-2xl font-bold text-utama">
+        <h2 className="mb-4 text-2xl font-bold text-utama dark:text-sky-200">
           Proyek Terbaru
         </h2>
 
