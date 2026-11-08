@@ -8,7 +8,11 @@ const kelasInput = "mt-1 w-full rounded-lg border border-gray-300 dark:border-gr
 export default function FormKontak() {
     const [nama, setNama] = useState("");
     const [email, setEmail] = useState("");
+    const [hp, setHp] = useState("");
+    const [keperluan, setKeperluan] = useState("");
+    const [pesan, setPesan] = useState("");
     const [error, setError] = useState({});
+    const [berhasil, setBerhasil] = useState(false);
 
     function kirim(e) {
         e.preventDefault();
@@ -17,14 +21,35 @@ export default function FormKontak() {
         if (nama.trim() === "") {
             errorBaru.nama = "Nama wajib diisi.";
         }
+
         if (!email.includes("@")) {
             errorBaru.email = "Email harus memuat tanda @, contoh nama@gmail.com";
         }
+
+        if (hp.trim().length < 10) {
+            errorBaru.hp = "Nomor HP minimal 10 angka.";
+        }
+
+        if (keperluan === "") {
+            errorBaru.keperluan = "Pilih salah satu keperluan.";
+        }
+
+        if (pesan.trim().length < 10) {
+            errorBaru.pesan = "Pesan minimal 10 karakter.";
+        }
+
         setError(errorBaru);
+        setBerhasil(Object.keys(errorBaru).length === 0);
     }
 
     return (
         <form onSubmit={kirim} noValidate className="space-y-4">
+            {berhasil && (
+                <p className="rounded-lg bg-green-100 p-3 text-green-800 dark:bg-green-900 dark:text-green-100">
+                    Terima kasih, {nama} Pesanmu sudah terkirim.
+                </p>
+            )}
+
             <div>
                 <label htmlFor="nama" className="block font-semibold">
                     Nama Lengkap
@@ -65,10 +90,12 @@ export default function FormKontak() {
                     type="tel"
                     id="telepon"
                     name="telepon"
-                    placeholder="1511980"
-                    required
-                    className="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2"
+                    value={hp}
+                    onChange={(e) => setHp(e.target.value)}
+                    placeholder="081234567890"
+                    className={kelasInput}
                 />
+                {error.hp && <p className="mt-1 text-sm text-aksen dark:text-red-300">{error.hp}</p>}
             </div>
 
             <div>
@@ -78,16 +105,16 @@ export default function FormKontak() {
                 <select
                     id="keperluan"
                     name="keperluan"
-                    className="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2"
-                    defaultValue=""
+                    value={keperluan}
+                    onChange={(e) => setKeperluan(e.target.value)}
+                    className={kelasInput}
                 >
-                    <option value="" disabled>
-                        ---pilih keperluan---
-                    </option>
+                    <option value="">---pilih keperluan---</option>
                     <option value="Pertanyaan">Pertanyaan</option>
                     <option value="kerja-sama">Kerja sama</option>
                     <option value="lainnya">Lainnya</option>
                 </select>
+                {error.keperluan && <p className="mt-1 text-sm text-aksen dark:text-red-300">{error.keperluan}</p>}
             </div>
 
             <div>
@@ -97,12 +124,14 @@ export default function FormKontak() {
                 <textarea
                     id="pesan"
                     name="pesan"
+                    value={pesan}
+                    onChange={(e) => setPesan(e.target.value)}
                     rows={5}
                     maxLength={350}
                     placeholder="Tulis pesanmu di sini..."
-                    required
-                    className="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2"
+                    className={kelasInput}
                 />
+                {error.pesan && <p className="mt-1 text-sm text-aksen dark:text-red-300">{error.pesan}</p>}
             </div>
 
             <button

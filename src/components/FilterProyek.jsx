@@ -14,7 +14,9 @@ export default function FilterProyek ({ proyek }) {
     const kataKecil = kata.toLowerCase();
     const hasil = proyek.filter((p) => {
         const cocokKategori = kategori === "Semua" || p.kategori === kategori;
-        const cocokKata = p.judul.toLowerCase().includes(kataKecil);
+        const cocokJudul = p.judul.toLowerCase().includes(kataKecil);
+        const cocokDeskripsi = p.deskripsi.toLowerCase().includes(kataKecil);
+        const cocokKata = cocokJudul || cocokDeskripsi;
         return cocokKategori && cocokKata;
     });
 
@@ -42,21 +44,35 @@ export default function FilterProyek ({ proyek }) {
                   value={kata}
                   onChange={(e) => setKata(e.target.value)}
                   placeholder="Contoh: REVORA"
-                  className="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 md:w-80"
+                  className="mt-2 w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 md:w-80"
                 />
+
+                {kata !== "" && (
+                    <button
+                     type="button"
+                     onClick={() => setKata("")}
+                     className="ml-4 text-sm font-semibold text-aksen dark:text-red-300 hover:underline"
+                    >
+                        Hapus Pencarian
+                    </button>
+                )}
             </div>
 
-                <div className="mt-6 grid gap-6 md:grid-cols-3">
-                    {hasil.map((item) => (
-                        <ProyekCard key={item.slug} proyek={item} />
-                    ))}
+            <p className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+                Menampilkan {hasil.length} dari {proyek.length} proyek
+            </p>
 
-                    {hasil.length === 0 &&  (
-                        <p className="mt-6 rounded-xl border border-dashed border-gray-300 dark:border-gray-600 p-6 text-center text-gray-600 dark:text-gray-400">
-                            Belum ada proyek yang cocok.
-                        </p>
-                    )}
-                </div>
+            <div className="mt-6 grid gap-6 md:grid-cols-3">
+                {hasil.map((item) => (
+                    <ProyekCard key={item.slug} proyek={item} />
+                ))}
+
+                {hasil.length === 0 &&  (
+                    <p className="mt-6 rounded-xl border border-dashed border-gray-300 dark:border-gray-600 p-6 text-center text-gray-600 dark:text-gray-400">
+                        Belum ada proyek yang cocok.
+                    </p>
+                )}
+            </div>
         </div>
     );
 }
