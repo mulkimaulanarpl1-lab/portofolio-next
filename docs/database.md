@@ -1,40 +1,49 @@
+
 # Struktur Database Portofolio
 
-Database disimpan di Supabase, project `portofolio-andi` (region
-Southeast Asia, Singapore). Alamat project dan
-publishable key disimpan di `.env.local`, yang tidak ikut di-commit
-karena tercantum di `.gitignore` (`.env*`).
+Database portofolio Mulki Maulana Tegar disimpan menggunakan Supabase. Database ini digunakan untuk menyimpan data proyek, pesan dari pengunjung, dan keahlian.
 
-## Tabel `projects`
+## Tabel `project`
 
-Daftar proyek portofolio Andi Pratama.
+Daftar proyek portofolio Mulki Maulana Tegar.
 
 | Kolom | Tipe | Keterangan |
 | --- | --- | --- |
-| `id` | `int8` | Primary key, nomor otomatis 1, 2, 3, ... |
-| `created_at` | `timestamptz` | Waktu baris dibuat, terisi otomatis dengan `now()` |
-| `slug` | `text` | Penanda unik di alamat, misalnya `halaman-profil` (unik) |
+| `id` | `int8` | Primary key, nomor otomatis |
+| `created_at` | `timestamptz` | Waktu data dibuat |
+| `slug` | `text` | Penanda unik proyek |
 | `judul` | `text` | Judul proyek |
-| `deskripsi` | `text` | Kalimat singkat tentang proyek |
-| `kategori` | `text` | Website, IoT, atau Mobile APP |
-| `minggu` | `text` | Minggu proyek dibuat, misalnya `Minggu 01` |
-| `fitur` | `text[]` | Daftar hal yang dipelajari (array teks) |
-| `gambar_url` | `text` | Alamat gambar di folder `public`, misalnya `/proyek/proyek-profil.png` |
+| `deskripsi` | `text` | Deskripsi proyek |
+| `kategori` | `text` | Kategori proyek |
+| `minggu` | `text` | Minggu proyek dibuat |
+| `fitur` | `text[]` | Daftar fitur proyek |
+| `gambar_url` | `text` | Alamat gambar proyek |
 
-RLS aktif. Policy `Pengunjung boleh membaca proyek`: peran `anon`
-boleh `select` semua baris.
+RLS digunakan untuk mengatur akses data proyek.
 
 ## Tabel `messages`
 
-Pesan dari form kontak.
+Data pesan yang dikirim pengunjung melalui formulir kontak.
 
 | Kolom | Tipe | Keterangan |
 | --- | --- | --- |
-| `id` | `int8` | Primary key, nomor otomatis 1, 2, 3, ... |
-| `created_at` | `timestamptz` | Waktu baris dibuat, terisi otomatis dengan `now()` |
+| `id` | `int8` | Primary key, nomor otomatis |
+| `created_at` | `timestamptz` | Waktu pesan dibuat |
 | `nama` | `text` | Nama pengirim |
 | `email` | `text` | Email pengirim |
 | `pesan` | `text` | Isi pesan |
 
-RLS aktif tanpa policy, sehingga pengunjung tidak bisa membaca
-pesan. Policy `insert` dibuat di Minggu 15.
+RLS aktif. Pengunjung tidak diberikan izin membaca pesan.
+
+## Tabel `skills`
+
+Daftar keahlian Mulki Maulana Tegar.
+
+| Kolom | Tipe | Keterangan |
+| --- | --- | --- |
+| `id` | `int8` | Primary key, nomor otomatis |
+| `created_at` | `timestamptz` | Waktu data dibuat |
+| `nama` | `text` | Nama keahlian |
+| `level` | `text` | Tingkat kemampuan |
+
+RLS aktif. Policy `Pengunjung boleh membaca keahlian` memberikan izin kepada peran `anon` untuk membaca data keahlian.
