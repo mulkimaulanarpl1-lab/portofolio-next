@@ -1,6 +1,7 @@
 
 import Kartu from "@/components/Kartu";
 
+
 export const metadata = {
   title: "Tentang",
   description: "Cerita, Hobi, cita-cita, dan jadwal belajar Mulki Maulan Tegar",
